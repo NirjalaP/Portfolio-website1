@@ -5,7 +5,7 @@ import { Menu, X } from 'lucide-react';
 const navLinks = [
 {href: "#about", label: "About"},
 {href: "#projects", label: "Projects"},
-{href: "#experience", label: "Projects"},
+{href: "#experience", label: "Experience"},
 {href: "#testimonials", label: "testimonials"}
 ];
 
@@ -42,15 +42,15 @@ useEffect(() => {
         </div>
 
         {/* CTA Button */}
-        <div className='hidden' md:block>
+        <div className='hidden md:block'>
             <Button size='sm'>Contact Me</Button>
         </div>
 
         {/* Mobile Menu Button */}
-        <buttton onClick= {()=>setIsMobileMenuOpen((prev) => !prev)} className = 'md:hidded p-2 text-foreground'>
+        <button onClick= {()=>setIsMobileMenuOpen((prev) => !prev)} className = 'md:hidden p-2 text-foreground'>
             {isMobileMenuOpen ? <X size={24}/> :            
             <Menu size={24}/>}
-        </buttton>
+        </button>
     </nav>
 
     {/* {Moblile Menu} */}
@@ -61,11 +61,12 @@ useEffect(() => {
                     <a 
                     key={index} 
                     href={link.href} 
+                    onClick={() => setIsMobileMenuOpen(false)}
                     className='text-lg text-muted-foreground hover:text-foreground  py-2'> 
                         {link.label}
                     </a>
                 ))}
-                 <Button>Contact Me</Button>
+                 <Button onClick =  {() => setIsMobileMenuOpen(false)}>Contact Me</Button>
         </div>
     </div>
 )}   
