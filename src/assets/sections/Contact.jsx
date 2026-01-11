@@ -3,26 +3,27 @@ import {
   Send,
   CheckCircle,
   AlertCircle,
-  Linkedin
+  Linkedin,
 } from "lucide-react";
-import  Button  from "@/components/Button";
+
+import Button from "@/components/Button";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 
 const contactInfo = [
-{
-  icon: Mail,
-  label: "Email",
-  value: "nirjalaprajapati111@gmail.com",
-  href: "mailto:nirjalaprajapati111@gmail.com"
-},
-{ 
-  icon: Linkedin,
-  label: "LinkedIn",
-  value: "https://www.linkedin.com/in/nirjala-prajapati-890975283/",
-  href: "https://www.linkedin.com/in/nirjala-prajapati-890975283/"
-}
-]
+  {
+    icon: Mail,
+    label: "Email",
+    value: "nirjalaprajapati111@gmail.com",
+    href: "mailto:nirjalaprajapati111@gmail.com",
+  },
+  {
+    icon: Linkedin,
+    label: "LinkedIn",
+    value: "https://www.linkedin.com/in/nirjala-prajapati-890975283/",
+    href: "https://www.linkedin.com/in/nirjala-prajapati-890975283/",
+  },
+];
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
@@ -41,10 +42,11 @@ export const Contact = () => {
 
     setIsLoading(true);
     setSubmitStatus({ type: null, message: "" });
+
     try {
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_ID;
 
       if (!serviceId || !templateId || !publicKey) {
         throw new Error(
@@ -69,16 +71,17 @@ export const Contact = () => {
       });
       setFormData({ name: "", email: "", message: "" });
     } catch (err) {
-      console.error("EmailJS error:", error);
+      console.error("EmailJS error:", err);
       setSubmitStatus({
         type: "error",
         message:
-          error.text || "Failed to send message. Please try again later.",
+          err?.text || "Failed to send message. Please try again later.",
       });
     } finally {
       setIsLoading(false);
     }
   };
+
   return (
     <section id="contact" className="py-32 relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full">
@@ -130,12 +133,13 @@ export const Contact = () => {
               <div>
                 <label
                   htmlFor="email"
-                  type="email"
                   className="block text-sm font-medium mb-2"
                 >
                   Email
                 </label>
                 <input
+                  id="email"
+                  type="email"
                   required
                   placeholder="your@email.com"
                   value={formData.email}
@@ -154,6 +158,7 @@ export const Contact = () => {
                   Message
                 </label>
                 <textarea
+                  id="message"
                   rows={5}
                   required
                   value={formData.message}
@@ -235,7 +240,9 @@ export const Contact = () => {
                 <span className="font-medium">Currently Available</span>
               </div>
               <p className="text-muted-foreground text-sm">
-              I'm currently seeking internship or entry-level opportunities. If you're looking for a motivated developer eager to grow and contribute, let's connect!
+                I'm currently seeking internship or entry-level opportunities.
+                If you're looking for a motivated developer eager to grow and
+                contribute, let's connect!
               </p>
             </div>
           </div>
@@ -244,4 +251,5 @@ export const Contact = () => {
     </section>
   );
 };
+
 export default Contact;

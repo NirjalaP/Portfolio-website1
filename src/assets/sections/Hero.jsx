@@ -78,9 +78,12 @@ const Hero = () => {
 
             {/* CTA */}
             <div>
+              <a href="#contact">
               <Button size="lg">
                 Contact Me <ArrowRight className="w-5 h-5" />
               </Button>
+
+              </a>
             </div>
 
             {/* Social Links */}
