@@ -9,7 +9,7 @@ const projects = [
       "A full-stack weather forecasting application built with React (Vite) and a custom Node.js/Express backend. It delivers real-time conditions, hourly trends, and 7-day forecasts using WeatherAPI. The backend securely handles API communication and CORS, deployed on Render, while the frontend is deployed on Vercel.",
     image: "/projects/project1.png",
     tags: ["React", "JavaScript", "Node.js", "API", "Vercel", "Render"],
-    link: "https://weather-app-blue-psi-92.vercel.app/",
+    link: "https://weather-app-jrdm.vercel.app/",
     github: "https://github.com/NirjalaP/Weather-App.git",
   },
   {
